@@ -1,0 +1,53 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+{% load meus_filtros %}
+{% block conteudo %}
+
+<link rel="stylesheet"  href="{% static '/css/listar.css' %}">
+
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tipo:</th>
+            <th>CPF:</th>
+            <th>CNPJ:</th>
+            <th>Nome:</th>
+            <th>E-mail:</th>
+            <th>Telefone:</th>
+            <th>Telefone2:</th>
+            <th>Rua:</th>
+            <th>Bairro:</th>
+            <th>Cidade:</th>
+            <th>Estado:</th>
+            <th>Número:</th>
+            <th>Complemento:</th>
+            <th>CEP:</th>
+            <th>Data de Registro:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in usuarios %}
+        <tr>
+            <td>{{i.tipo_cliente}}</td>
+            <td>{{i.cliente_cpf}}</td>
+            <td>{{i.cliente_cnpj}}</td>
+            <td>{{i.cliente_nome}}</td>
+            <td>{{i.cliente_email}}</td>
+            <td>{{i.cliente_telefone}}</td>
+            <td>{{i.cliente_telefone2}}</td>
+            <td>{{i.cliente_rua}}</td>
+            <td>{{i.cliente_bairro}}</td>
+            <td>{{i.cliente_cidade}}</td>
+            <td>{{i.cliente_estado}}</td>
+            <td>{{i.cliente_numero_casa}}</td>
+            <td>{{i.cliente_complemento}}</td>
+            <td>{{i.cliente_cep}}</td>
+            <td>{{i.cliente_data_registro}}</td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+{% endblock %}

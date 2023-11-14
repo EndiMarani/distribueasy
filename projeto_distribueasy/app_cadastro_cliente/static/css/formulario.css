@@ -1,0 +1,59 @@
+/* Estilo para o contêiner principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo para os rótulos (labels) */
+.label-cadastro {
+    font-weight: bold;
+    color: orangered;
+}
+
+/* Estilo para os campos de entrada (input) e seleção (select) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para os campos de entrada quando há foco */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007bff; /* Cor da borda azul quando há foco */
+}
+
+/* Estilo para o botão "Cadastrar" */
+input[type="submit"] {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilo para o botão "Cadastrar" quando o mouse estiver sobre ele */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escura quando passa o mouse */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Estilo para o botão "Cadastrar" dentro do contêiner principal */
+input[type="submit"] {
+    margin-top: 20px;
+}

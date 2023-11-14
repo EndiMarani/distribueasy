@@ -1,0 +1,48 @@
+/* Estilizando a tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+/* Estilizando o cabeçalho da tabela */
+.table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: left; /* Ajuste o alinhamento do texto para esquerda */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Estilizando as células de dados da tabela */
+.table td {
+    text-align: left; /* Ajuste o alinhamento do texto para esquerda */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Estilizando as linhas ímpares da tabela */
+.table tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilizando as linhas pares da tabela */
+.table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Estilizando o texto dentro das células */
+.table td, .table th {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilizando as células do cabeçalho */
+.table th {
+    font-size: 16px;
+}
+
+/* Estilizando as células de dados */
+.table td {
+    font-size: 14px;
+}

@@ -1,0 +1,100 @@
+{% extends 'usuarios/base.html'%}
+
+{% load meus_filtros %}
+{% load static %}
+
+{% block conteudo %}
+<link rel="stylesheet" href="{% static '/css/formulario.css' %}">
+<body>
+    <main class="container">
+        
+        <form method="post" action="{% url 'cadastrar_usuarios' %}" class="novalidate">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.tipo_cliente.errors }}
+                <label>Tipo de Cliente:</label>
+                {{ form.tipo_cliente|addclass:'form-control' }}
+            </div>
+
+            <div class="pf-info hidden form-control">
+                {{ form.cliente_cpf.errors }}
+                <label>CPF:</label>
+                {{ form.cliente_cpf|addclass:'form-control' }}
+            
+                {{ form.cliente_nome.errors }}
+                <label>Nome:</label>
+                {{ form.cliente_nome|addclass:'form-control' }}
+            </div>
+            
+            <div class="pj-info hidden form-control">
+                {{ form.cliente_cnpj.errors }}
+                <label>CNPJ:</label>
+                {{ form.cliente_cnpj|addclass:'form-control' }}
+            
+                {{ form.cliente_nome_empresa.errors }}
+                <label>Empresa:</label>
+                {{ form.cliente_nome_empresa|addclass:'form-control' }}
+            </div>            
+
+            <div class="all-info hidden form-control">
+                {{ form.cliente_email.errors }}
+                <label>E-mail:</label>
+                {{ form.cliente_email|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                {{ form.cliente_telefone.errors }}
+                <label>Telefone:</label>
+                {{ form.cliente_telefone|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Outro (opcional):</label>
+                {{ form.cliente_telefone2|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Rua:</label>
+                {{ form.cliente_rua|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Bairro:</label>
+                {{ form.cliente_bairro|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Cidade:</label>
+                {{ form.cliente_cidade|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Estado:</label>
+                {{ form.cliente_estado|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Número:</label>
+                {{ form.cliente_numero_casa|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>Complemento (opcional):</label>
+                {{ form.cliente_complemento|addclass:'form-control' }}
+            </div>
+
+            <div class="all-info hidden form-control">
+                <label>CEP:</label>
+                {{ form.cliente_cep|addclass:'form-control' }}
+            </div>
+            <div>
+                <input type="submit" value="Cadastrar" class="btn reg-button">
+            </div>
+        </form>
+    </main>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static '/js/tipo_cliente.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'usuarios/base.html' %}
+
+{% block conteudo %}
+<h5 style="color: orangered; font-weight: bold; font-family: Verdana; text-align: center;" id='bem-vindo'>BEM VINDO!</h5>
+
+  
+    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+        
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control small-input" id="usuario" placeholder="nome@exemplo.com">
+            <label for="usuario">Usuário</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control small-input" id="senha" placeholder="Password">
+            <label for="senha">Senha</label>
+        </div>
+
+        <div class="d-grid gap-3">
+            <button class="btn btn-primary small-button" type="button" style="background-color: black; border-color: orangered; font-family: Verdana; color: orangered; font-weight: bold;">
+                Entrar</button>
+            <a href="{% url 'cadastrar_usuarios'%}"><button class="btn btn-primary small-button" type="button" style="background-color: black; border-color: orangered; font-family: Verdana; color: orangered; font-weight: bold;">
+                Cadastre-se</button></a>
+        </div>
+    </div>
+
+{% endblock %}
