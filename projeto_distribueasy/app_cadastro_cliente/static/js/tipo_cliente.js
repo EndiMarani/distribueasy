@@ -1,38 +1,47 @@
-$(document).ready(function() {
-    var tipoClienteSelect = $("#id_tipo_cliente");
-    var pfInfo = $(".pf-info");
-    var pjInfo = $(".pj-info");
-    var allInfo = $(".all-info");
-
-    function toggleInfoFields(selectedValue) {
-        $("input[type='text']").prop("disabled", false); // Habilitar todos os campos antes de ocultar
-
-        pfInfo.addClass('hidden');
-        pjInfo.addClass('hidden');
-        allInfo.addClass('hidden');
-
-        if (selectedValue === "PF") {
-            pfInfo.removeClass('hidden');
-            allInfo.removeClass('hidden');
-            pjInfo.addClass('hidden');
-        } else if (selectedValue === "PJ") {
-            pjInfo.removeClass('hidden');
-            allInfo.removeClass('hidden');
-            pfInfo.addClass('hidden');
-        }
-    }
-
-    tipoClienteSelect.on("change", function() {
-        var selectedValue = $(this).val();
-        toggleInfoFields(selectedValue);
-
-        // Desabilitar campos não utilizados após ocultar
-        $("input[type='text']").not("." + selectedValue + "-info input").prop("disabled", true);
-    });
-
-    $("form").submit(function(event) {
-        // Habilitar todos os campos antes do envio
-        $("input[type='text']").prop("disabled", false);
-        return true;
-    });
-});
+        document.addEventListener('DOMContentLoaded', function () {
+            var tipoClienteSelect = document.getElementById('id_tipo_cliente');
+            var cpfCnpjContainer = document.querySelector('.hidden.form-control');
+            var allInfoContainers = document.querySelectorAll('.all-info');
+            var cpfLabel = cpfCnpjContainer.querySelector('label[for=id_cliente_cpf_cnpj]');
+            var nomeLabel = cpfCnpjContainer.querySelector('label[for=id_cliente_nome]');
+    
+            function toggleVisibility(selectedValue) {
+                if (selectedValue === 'PF' || selectedValue === 'PJ') {
+                    if (selectedValue === 'PF') {
+                        showContainer(cpfCnpjContainer);
+                        cpfLabel.textContent = 'CPF:';
+                        nomeLabel.textContent = 'Nome:';
+                    } else if (selectedValue === 'PJ') {
+                        hideContainer(cpfCnpjContainer);
+                        cpfLabel.textContent = 'CNPJ:';
+                        nomeLabel.textContent = 'Empresa:';
+                    }
+    
+                    allInfoContainers.forEach(function (container) {
+                        showContainer(container);
+                    });
+                } else {
+                    hideContainer(cpfCnpjContainer);
+    
+                    allInfoContainers.forEach(function (container) {
+                        hideContainer(container);
+                    });
+                }
+            }
+    
+            function showContainer(container) {
+                container.classList.remove('hidden');
+            }
+    
+            function hideContainer(container) {
+                container.classList.add('hidden');
+            }
+    
+            // Adicionando um listener para chamar a função quando o valor do tipo de cliente muda
+            tipoClienteSelect.addEventListener('change', function () {
+                toggleVisibility(tipoClienteSelect.value);
+            });
+    
+            // Chamar a função inicialmente com o valor atual do tipo de cliente
+            toggleVisibility(tipoClienteSelect.value);
+        });

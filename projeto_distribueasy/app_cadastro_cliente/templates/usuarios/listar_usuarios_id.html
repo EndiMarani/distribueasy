@@ -1,0 +1,39 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+{% load meus_filtros %}
+{% block conteudo %}
+<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+<body>
+    <div class="card">
+        <div class="card-header">
+            Dados do Cliente
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Tipo de Cliente: {{ usuarios_id.tipo_cliente|tipo_cliente_extenso }}</h5>
+            <h5 class="card-title">CPF/CNPJ: {{usuarios_id.cliente_cpf_cnpj}}</h5>
+            <h5 class="card-title">Nome: {{usuarios_id.cliente_nome}}</h5>
+            <h5 class="card-title">E-mail: {{usuarios_id.cliente_email}}</h5>
+            <h5 class="card-title">Telefone: {{usuarios_id.cliente_telefone}}</h5>
+            <h5 class="card-title">Outro: {{usuarios_id.cliente_telefone2}}</h5>
+            <h5 class="card-title">Rua: {{usuarios_id.cliente_rua}}</h5>
+            <h5 class="card-title">Bairro: {{usuarios_id.cliente_bairro}}</h5>
+            <h5 class="card-title">Cidade: {{usuarios_id.cliente_cidade}}</h5>
+            <h5 class="card-title">Estado: {{usuarios_id.cliente_estado}}</h5>
+            <h5 class="card-title">Número: {{usuarios_id.cliente_numero_casa}}</h5>
+            <h5 class="card-title">Complemento: {{usuarios_id.cliente_complemento}}</h5>
+            <h5 class="card-title">CEP: {{usuarios_id.cliente_cep}}</h5>
+            <h5 class="card-title">Cadastrado em: {{usuarios_id.cliente_data_registro}}</h5>
+        </div>
+       
+        <form method="post" action="{% url 'excluir_usuarios' usuarios_id.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <a href="{% url 'editar_usuarios' usuarios_id.id %}" class="btn edit-button">Editar</a>
+                    <button type="submit" class="btn remove-button">Excluir</button>
+                    <a href="{% url 'listar_usuarios' %}" class="btn back-button">Voltar</a>
+                    
+        </form>
+    </div>
+    
+</body>
+
+{% endblock %}

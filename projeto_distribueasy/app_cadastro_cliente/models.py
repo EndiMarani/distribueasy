@@ -1,16 +1,24 @@
 from django.db import models
+from .validators import *
 
 # Create your models here.
+class CPFField(models.CharField):
+    default_validators = [validate_cpf]
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('max_length', 14)
+        super().__init__(*args, **kwargs)
+
+class MyModel(models.Model):
+    cpf = CPFField('CPF')
 class Cliente(models.Model):
     cliente_CHOICE = (
         ('PF', 'Pessoa Física'),
         ('PJ', 'Pessoa Jurídica')
     )
     tipo_cliente = models.CharField(max_length=2, choices=cliente_CHOICE)
-    cliente_cpf = models.CharField(max_length=14)
-    cliente_cnpj = models.CharField(max_length=18)
+    cliente_cpf_cnpj = CPFField('cpf')
     cliente_nome = models.CharField(max_length=50)
-    cliente_nome_empresa = models.CharField(max_length=50)
     cliente_email = models.EmailField(max_length=50)
     cliente_telefone = models.CharField(max_length=14)
     cliente_telefone2 = models.CharField(max_length=14, blank=True, null=True)

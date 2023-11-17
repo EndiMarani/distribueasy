@@ -8,34 +8,24 @@
 <body>
     <main class="container">
         
-        <form method="post" action="{% url 'cadastrar_usuarios' %}" class="novalidate">
+        <form method="post" action="{% if editar %}{% url 'editar_usuarios' usuario_id %}{% else %}{% url 'cadastrar_usuarios' %}{% endif %}" class="novalidate">
             {% csrf_token %}
             
             <div class="form-group">
                 {{ form.tipo_cliente.errors }}
-                <label>Tipo de Cliente:</label>
+                <label for="id_tipo_cliente">Tipo de Cliente:</label>
                 {{ form.tipo_cliente|addclass:'form-control' }}
             </div>
 
-            <div class="pf-info hidden form-control">
-                {{ form.cliente_cpf.errors }}
-                <label>CPF:</label>
-                {{ form.cliente_cpf|addclass:'form-control' }}
+            <div class="all-info hidden form-control">
+                {{ form.cliente_cpf_cnpj.errors }}
+                <label for="id_cliente_cpf_cnpj">CPF: </label>
+                {{ form.cliente_cpf_cnpj|addclass:'form-control' }}
             
                 {{ form.cliente_nome.errors }}
-                <label>Nome:</label>
+                <label for="id_cliente_nome">Nome: </label>
                 {{ form.cliente_nome|addclass:'form-control' }}
             </div>
-            
-            <div class="pj-info hidden form-control">
-                {{ form.cliente_cnpj.errors }}
-                <label>CNPJ:</label>
-                {{ form.cliente_cnpj|addclass:'form-control' }}
-            
-                {{ form.cliente_nome_empresa.errors }}
-                <label>Empresa:</label>
-                {{ form.cliente_nome_empresa|addclass:'form-control' }}
-            </div>            
 
             <div class="all-info hidden form-control">
                 {{ form.cliente_email.errors }}
@@ -96,5 +86,5 @@
     
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static '/js/tipo_cliente.js' %}"></script>
+<script src="{% static 'js/tipo_cliente.js' %}"> </script>
 {% endblock %}

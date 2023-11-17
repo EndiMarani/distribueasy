@@ -1,0 +1,88 @@
+/* styles.css */
+
+/* Reset de margens e preenchimentos para garantir consistência entre navegadores */
+body, h1, h2, h3, h4, h5, h6, p, div {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo geral para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para o card */
+.card {
+    margin-top: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dddddd;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Estilo para o cabeçalho do card */
+.card-header {
+    text-align: center;
+    background-color: orangered;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Estilo para o corpo do card */
+.card-body {
+    padding: 20px;
+}
+
+/* Estilo para títulos dentro do card */
+.card-title {
+    font-size: 18px;
+    color: orangered;
+}
+
+/* Estilo para o botão de edição */
+.btn.edit-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn.edit-button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo para o botão de remoção */
+.btn.remove-button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.remove-button:hover {
+    background-color: #c0392b;
+}
+
+/* Estilo para o botão de voltar */
+.btn.back-button {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn.back-button:hover {
+    background-color: #27ae60;
+}
