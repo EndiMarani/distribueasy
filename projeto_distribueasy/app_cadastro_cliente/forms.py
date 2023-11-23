@@ -1,22 +1,40 @@
+# forms.py
 from django import forms
-from .models import *
+from .models import Cliente
+from .validators import *
 
 class ClienteForm(forms.ModelForm):
+    cliente_estado = forms.CharField(label='Estado', required=False)
+    cliente_municipio = forms.CharField(label='Município', required=False)
+
     class Meta:
         model = Cliente
-        fields = ['tipo_cliente','cliente_cpf_cnpj','cliente_nome', 'cliente_email','cliente_telefone','cliente_telefone2','cliente_rua','cliente_bairro','cliente_cidade','cliente_estado','cliente_numero_casa','cliente_complemento','cliente_cep']
-        labels = {
-            'tipo_cliente': 'Tipo',
-            'cliente_cpf_cnpj':'Documento',
-            'cliente_nome':'Nome',
-            'cliente_email':'E-mail',
-            'cliente_telefone':'Telefone',
-            'cliente_telefon2':'Segundo Telefone',
-            'cliente_rua':'Rua',
-            'cliente_bairro':'Bairro',
-            'cliente_cidade':'Cidade',
-            'cliente_estado':'Estado',
-            'cliente_numero_casa':'Número',
-            'cliente_complemento':'Complemento',
-            'cliente_cep':'CEP',            
-        }
+        fields = ['tipo_cliente', 'cliente_cpf_cnpj', 'cliente_nome', 'cliente_email', 'cliente_telefone', 'cliente_telefone2', 'cliente_rua', 'cliente_bairro', 'cliente_cidade', 'cliente_estado', 'cliente_municipio', 'cliente_numero_casa', 'cliente_complemento', 'cliente_cep']
+
+    def clean_cliente_cep(self):
+        cep = self.cleaned_data['cliente_cep']
+        informacoes_endereco = obter_endereco(cep)
+
+        if not informacoes_endereco:
+            raise forms.ValidationError('CEP inválido ou não encontrado')
+
+        # Atualize os campos do endereço no formulário
+        self.cleaned_data['cliente_cidade'] = informacoes_endereco.get('localidade', '')
+        self.cleaned_data['cliente_estado'] = informacoes_endereco.get('uf', '')
+        self.cleaned_data['cliente_bairro'] = informacoes_endereco.get('bairro', '')
+        self.cleaned_data['cliente_rua'] = informacoes_endereco.get('logradouro', '')
+
+        return cep
+
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        tipo_cliente = cleaned_data.get('tipo_cliente')
+        cliente_cpf_cnpj = cleaned_data.get('cliente_cpf_cnpj')
+
+        if tipo_cliente and cliente_cpf_cnpj:
+            validate_cpf_cnpj(cliente_cpf_cnpj)
+
+        # Adicione outras validações conforme necessário
+
+        return cleaned_data

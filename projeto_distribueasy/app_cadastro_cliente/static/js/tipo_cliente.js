@@ -1,4 +1,5 @@
-        document.addEventListener('DOMContentLoaded', function () {
+//Filtro de Exibição Pessoa Física ou Jurídica
+    document.addEventListener('DOMContentLoaded', function () {
             var tipoClienteSelect = document.getElementById('id_tipo_cliente');
             var cpfCnpjContainer = document.querySelector('.hidden.form-control');
             var allInfoContainers = document.querySelectorAll('.all-info');
@@ -44,4 +45,10 @@
     
             // Chamar a função inicialmente com o valor atual do tipo de cliente
             toggleVisibility(tipoClienteSelect.value);
-        });
+            
+
+
+});
+
+
+

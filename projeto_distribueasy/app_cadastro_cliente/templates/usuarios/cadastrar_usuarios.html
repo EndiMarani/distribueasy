@@ -43,6 +43,11 @@
                 <label>Outro (opcional):</label>
                 {{ form.cliente_telefone2|addclass:'form-control' }}
             </div>
+            
+            <div class="all-info hidden form-control">
+                <label>CEP:</label>
+                {{ form.cliente_cep|addclass:'form-control' }}
+            </div>
 
             <div class="all-info hidden form-control">
                 <label>Rua:</label>
@@ -74,10 +79,6 @@
                 {{ form.cliente_complemento|addclass:'form-control' }}
             </div>
 
-            <div class="all-info hidden form-control">
-                <label>CEP:</label>
-                {{ form.cliente_cep|addclass:'form-control' }}
-            </div>
             <div>
                 <input type="submit" value="Cadastrar" class="btn reg-button">
             </div>
@@ -87,4 +88,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/tipo_cliente.js' %}"> </script>
+<script src="{% static 'js/exibir_endereco.js' %}"> </script>
 {% endblock %}

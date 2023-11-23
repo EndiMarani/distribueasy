@@ -3,21 +3,20 @@ from .validators import *
 
 # Create your models here.
 class CPFField(models.CharField):
-    default_validators = [validate_cpf]
+    default_validators = [validate_cpf_cnpj]
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('max_length', 14)
         super().__init__(*args, **kwargs)
 
-class MyModel(models.Model):
-    cpf = CPFField('CPF')
 class Cliente(models.Model):
     cliente_CHOICE = (
         ('PF', 'Pessoa Física'),
         ('PJ', 'Pessoa Jurídica')
     )
     tipo_cliente = models.CharField(max_length=2, choices=cliente_CHOICE)
-    cliente_cpf_cnpj = CPFField('cpf')
+    cliente_cpf_cnpj = CPFField('CPF/CNPJ')
+    cliente_nome = models.CharField(max_length=50)
     cliente_nome = models.CharField(max_length=50)
     cliente_email = models.EmailField(max_length=50)
     cliente_telefone = models.CharField(max_length=14)
