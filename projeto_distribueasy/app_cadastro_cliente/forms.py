@@ -16,7 +16,7 @@ class ClienteForm(forms.ModelForm):
         informacoes_endereco = obter_endereco(cep)
 
         if not informacoes_endereco:
-            raise forms.ValidationError('CEP inválido ou não encontrado')
+            raise forms.ValidationError('CEP inválido ou não encontrado', code='invalid_cep')
 
         # Atualize os campos do endereço no formulário
         self.cleaned_data['cliente_cidade'] = informacoes_endereco.get('localidade', '')

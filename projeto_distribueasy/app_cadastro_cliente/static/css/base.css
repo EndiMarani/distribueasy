@@ -1,0 +1,31 @@
+/* Estilo para reduzir o tamanho dos botões e campos de entrada */
+.small-button {
+    width: 300px; /* Largura desejada */
+    height: 40px; /* Altura desejada */
+}
+
+.small-input {
+    width: 300px; /* Largura desejada */
+    height: 30px; /* Altura desejada */
+}
+body {
+    background-color: black;
+    color: orangered;
+    font-weight: bold;
+    font-family: Verdana;
+}
+.navbar-divisor {
+    border-bottom: 10px solid orangered;
+}
+
+#bem-vindo {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+    margin: 0 auto;
+    text-align: center;
+}

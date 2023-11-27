@@ -46,8 +46,6 @@
             // Chamar a função inicialmente com o valor atual do tipo de cliente
             toggleVisibility(tipoClienteSelect.value);
             
-
-
 });
 
 
