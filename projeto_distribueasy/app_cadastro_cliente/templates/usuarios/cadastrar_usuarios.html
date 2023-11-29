@@ -8,18 +8,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/tipo_cliente.js' %}"> </script>
 <script src="{% static 'js/exibir_endereco.js' %}"> </script>
+<link rel="stylesheet" href="{% static 'css/radio_select.css' %}">
 <link rel="stylesheet" href="{% static '/css/formulario.css' %}">
+
 
 <body>
     <main class="container formulario-container">
         
-        <form method="post" action="{% if editar %}{% url 'editar_usuarios' usuario_id %}{% else %}{% url 'cadastrar_usuarios' %}{% endif %}" class="novalidate">
+        <form method="post" action="{% if editar %}{% url 'editar_usuarios' usuario_id %}{% else %}{% url 'cadastrar_usuarios' %}?origem=cadastrar{% endif %}" class="novalidate">
+            
             {% csrf_token %}
             <br>
+
+            <div class="form-group">
+                <label>Tipo de Categoria:</label>
+            </div>
+
+            <div class="form-group" id="cliente_categoria">
+                {% for radio in form.cliente_categoria %}
+                    {{ radio.tag }} {{ radio.choice_label }}
+                {% endfor %}
+            </div>
+
             <div class="form-group">
                 {{ form.tipo_cliente.errors }}
                 <label for="id_tipo_cliente">Tipo de Cliente:</label>
-                {{ form.tipo_cliente|addclass:'form-control' }}
+                {{ form.tipo_cliente }}
             </div>
 
             <div class="all-info hidden form-control">

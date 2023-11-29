@@ -10,6 +10,7 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Categoria: </th>
                 <th>Tipo:</th>
                 <th>CPF/CNPJ:</th>
                 <th>Nome:</th>
@@ -30,6 +31,7 @@
         <tbody>
             {% for i in usuarios %}
             <tr>
+                <td>{{i.get_cliente_categoria_display}}</td>
                 <td>{{i.tipo_cliente}}</td>
                 <td>{{i.cliente_cpf_cnpj}}</td>
                 <td>{{i.cliente_nome}}</td>
@@ -43,7 +45,7 @@
                 <td>{{i.cliente_numero_casa}}</td>
                 <td>{{i.cliente_complemento}}</td>
                 <td>{{i.cliente_cep}}</td>
-                <td>{{i.cliente_data_registro}}</td>
+                <td>{{i.cliente_data_registro|date:"d-m-Y H:i"}}</td>
                 <td>
                     <a href="{% url 'listar_usuarios_id' i.id %}">Consultar</a>
                 </td>

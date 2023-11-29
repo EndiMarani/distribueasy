@@ -3,6 +3,12 @@
 {% load meus_filtros %}
 {% block conteudo %}
 <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/excluir_cliente.js' %}"></script>
+
 <body>
     <div class="card">
         <div class="card-header">
@@ -25,14 +31,38 @@
             <h5 class="card-title">Cadastrado em: {{usuarios_id.cliente_data_registro}}</h5>
         </div>
        
-        <form method="post" action="{% url 'excluir_usuarios' usuarios_id.id %}" style="display:inline;">
+    <form method="post" action="{% url 'excluir_usuarios' usuarios_id.id %}" style="display:inline;">
                     {% csrf_token %}
                     <a href="{% url 'editar_usuarios' usuarios_id.id %}" class="btn edit-button">Editar</a>
-                    <button type="submit" class="btn remove-button">Excluir</button>
+                     <!-- Botão de Excluir com Modal -->
+                    <button type="button" class="btn remove-button" data-toggle="modal" data-target="#confirmacaoModal">Excluir</button>
                     <a href="{% url 'listar_usuarios' %}" class="btn back-button">Voltar</a>
-                    
+
+                    <!-- Modal de Confirmação de Exclusão -->
+                    <div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmacaoModalLabel">Confirmar Exclusão</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir este cliente?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger" onclick="excluirCliente()">Excluir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </form>
     </div>
+
+   
     
 </body>
 

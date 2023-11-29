@@ -38,7 +38,7 @@ def validate_cpf_cnpj(value, is_juridica=False):
         if cpf_cnpj[-2:] != f'{first_digit}{second_digit}':
             raise ValidationError('Número de CNPJ inválido', 'invalid_cnpj')
     else:
-        raise ValidationError('CPF ou CNPJ deve conter 11 ou 14 números', 'invalid_length')
+        raise ValidationError('CPF deve conter 11 números', 'invalid_length')
 
     if is_juridica and len(cpf_cnpj) == 11:
         raise ValidationError('Número de CNPJ esperado para pessoa jurídica', 'invalid_length_juridica')

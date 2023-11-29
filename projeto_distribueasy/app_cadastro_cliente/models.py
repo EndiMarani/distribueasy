@@ -17,7 +17,6 @@ class Cliente(models.Model):
     tipo_cliente = models.CharField(max_length=2, choices=cliente_CHOICE)
     cliente_cpf_cnpj = CPFField('CPF/CNPJ')
     cliente_nome = models.CharField(max_length=50)
-    cliente_nome = models.CharField(max_length=50)
     cliente_email = models.EmailField(max_length=50)
     cliente_telefone = models.CharField(max_length=14)
     cliente_telefone2 = models.CharField(max_length=14, blank=True, null=True)
@@ -58,3 +57,9 @@ class Cliente(models.Model):
     cliente_cep = models.CharField(max_length=18)
     cliente_data_registro = models.DateTimeField(auto_now_add=True)
     cliente_data_edicao = models.DateTimeField(auto_now_add=True)
+    
+    categoria_CHOICES = [
+        ('F', 'Fornecedor'),
+        ('C', 'Consumidor')
+    ]
+    cliente_categoria = models.CharField(max_length=1, choices= categoria_CHOICES)
