@@ -31,7 +31,7 @@
             <h5 class="card-title">Cadastrado em: {{usuarios_id.cliente_data_registro}}</h5>
         </div>
        
-    <form method="post" action="{% url 'excluir_usuarios' usuarios_id.id %}" style="display:inline;">
+    <form method="post" action="{% url 'excluir_usuarios' usuarios_id.id %}" style="display:inline;" id="deleteForm">
                     {% csrf_token %}
                     <a href="{% url 'editar_usuarios' usuarios_id.id %}" class="btn edit-button">Editar</a>
                      <!-- Botão de Excluir com Modal -->

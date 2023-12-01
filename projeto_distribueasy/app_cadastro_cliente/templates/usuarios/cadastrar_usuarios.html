@@ -5,11 +5,9 @@
 
 {% block conteudo %}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'js/tipo_cliente.js' %}"> </script>
-<script src="{% static 'js/exibir_endereco.js' %}"> </script>
+
 <link rel="stylesheet" href="{% static 'css/radio_select.css' %}">
-<link rel="stylesheet" href="{% static '/css/formulario.css' %}">
+<link rel="stylesheet" href="{% static 'css/formulario.css' %}">
 
 
 <body>
@@ -38,8 +36,13 @@
 
             <div class="all-info hidden form-control">
                 {{ form.cliente_cpf_cnpj.errors }}
-                <label for="id_cliente_cpf_cnpj">CPF: </label>
+                <label for="id_cliente_cpf_cnpj" name="cliente_cpf_cnpj">CPF: </label>
+                <input id="cpfcnpj" type="text" placeholder="digite o CPF ou CNPJ" name="cpfcnpj" required>
+                {% if not editar %}
                 {{ form.cliente_cpf_cnpj|addclass:'form-control' }}
+                {% else %}
+                <input type="text" name="{{ form.cliente_cpf_cnpj.name }}" value="{{ form.cliente_cpf_cnpj.value }}" readonly>
+                {% endif %}
             
                 {{ form.cliente_nome.errors }}
                 <label for="id_cliente_nome">Nome: </label>
@@ -101,10 +104,30 @@
 
             <div>
                 <input type="submit" value="Cadastrar" class="btn reg-button">
+                <button onclick="backButton()" class="btn back-button"><a>Voltar</a></button>
             </div>
         </form>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="{% static 'js/tipo_cliente.js' %}"> </script>
+    <script src="{% static 'js/exibir_endereco.js' %}"> </script>
+    <script src="{% static 'js/back_button.js' %}"></script>
+    <script src="{% static 'js/only_numbers.js' %}"></script>
     
+    <script>
+        var maskCpfOuCnpj = IMask(document.getElementById('cpfcnpj'), {
+			mask:[
+				{
+					mask: '000.000.000-00',
+					maxLength: 11
+				},
+				{
+					mask: '00.000.000/0000-00'
+				}
+			]
+		});
+    </script>
 </body>
 
 {% endblock %}

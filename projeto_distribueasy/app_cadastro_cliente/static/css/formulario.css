@@ -93,3 +93,20 @@ input[type="submit"]:hover {
     background-color: orangered;
     color: black;
 }
+
+.back-button {
+    background-color: rgb(255, 255, 255);
+    color: orangered;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-color: orangered;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s; /* Adiciona uma transição suave para a cor de fundo */
+}
+
+.back-button:hover {
+    background-color: orangered;
+    color: black;
+}

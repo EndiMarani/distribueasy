@@ -3,6 +3,7 @@ from django import forms
 from .models import Cliente
 from .validators import *
 
+
 class ClienteForm(forms.ModelForm):
     cliente_estado = forms.CharField(label='Estado', required=False)
     cliente_municipio = forms.CharField(label='Município', required=False)
@@ -10,11 +11,18 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['tipo_cliente', 'cliente_cpf_cnpj', 'cliente_nome', 'cliente_email', 'cliente_telefone', 'cliente_telefone2', 'cliente_rua', 'cliente_bairro', 'cliente_cidade', 'cliente_estado', 'cliente_municipio', 'cliente_numero_casa', 'cliente_complemento', 'cliente_cep', 'cliente_categoria']
-
+    
+    widgets = {
+        'cliente_cpf_cnpj': forms.TextInput(attrs={'class': 'form-control only-digits'}),
+        # Adicione outros widgets conforme necessário para os outros campos
+    }
+    
     cliente_categoria = forms.ChoiceField(choices=Cliente.categoria_CHOICES, widget=forms.RadioSelect)
+ 
     
     def clean_cliente_cep(self):
         cep = self.cleaned_data['cliente_cep']
+        
         informacoes_endereco = obter_endereco(cep)
 
         if not informacoes_endereco:
