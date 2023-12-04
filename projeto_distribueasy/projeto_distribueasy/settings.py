@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'distribueasy',
-        'USER': 'root',
-        'PASSWORD': 'senac@1',
+        'USER': 'endimarani@hotmail.com',
+        'PASSWORD': 'Endi.060392',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -128,7 +128,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    'D:\\distribueasy\\projeto_distribueasy\\app_cadastro_cliente\\static',
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
