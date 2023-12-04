@@ -48,3 +48,5 @@ class ClienteForm(forms.ModelForm):
         # Adicione outras validações conforme necessário
 
         return cleaned_data
+    
+    

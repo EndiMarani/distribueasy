@@ -36,19 +36,19 @@
 
             <div class="all-info hidden form-control">
                 {{ form.cliente_cpf_cnpj.errors }}
-                <label for="id_cliente_cpf_cnpj" name="cliente_cpf_cnpj">CPF: </label>
-                <input id="cpfcnpj" type="text" placeholder="digite o CPF ou CNPJ" name="cpfcnpj" required>
+                <label for="id_cliente_cpf_cnpj" name="cliente_cpf_cnpj">CPF/CNPJ: </label>
+                
                 {% if not editar %}
-                {{ form.cliente_cpf_cnpj|addclass:'form-control' }}
+                    <input id="cpfcnpj" type="text" placeholder="digite o CPF ou CNPJ" name="{{ form.cliente_cpf_cnpj.name }}" value="{{ form.cliente_cpf_cnpj.value|default:'' }}" class="form-control visible-cpfcnpj">
                 {% else %}
-                <input type="text" name="{{ form.cliente_cpf_cnpj.name }}" value="{{ form.cliente_cpf_cnpj.value }}" readonly>
+                    <input type="text" name="{{ form.cliente_cpf_cnpj.name }}" value="{{ form.cliente_cpf_cnpj.value }}" readonly>
                 {% endif %}
-            
+                
                 {{ form.cliente_nome.errors }}
                 <label for="id_cliente_nome">Nome: </label>
                 {{ form.cliente_nome|addclass:'form-control' }}
             </div>
-
+            
             <div class="all-info hidden form-control">
                 {{ form.cliente_email.errors }}
                 <label>E-mail:</label>
@@ -115,19 +115,53 @@
     <script src="{% static 'js/back_button.js' %}"></script>
     <script src="{% static 'js/only_numbers.js' %}"></script>
     
-    <script>
-        var maskCpfOuCnpj = IMask(document.getElementById('cpfcnpj'), {
-			mask:[
-				{
-					mask: '000.000.000-00',
-					maxLength: 11
-				},
-				{
-					mask: '00.000.000/0000-00'
-				}
-			]
-		});
+        <script>
+                var inputElement = document.getElementById('cpfcnpj');
+                var visibleInput = document.querySelector('.visible-cpfcnpj');  // Certifique-se de que esta classe esteja correta
+                var inputValue = visibleInput.value.trim().replace(/[^\d]/g, '');
+
+
+                if (inputElement && visibleInput) {
+                    // Recupere a máscara anterior
+                    var maskCpfOuCnpj = IMask(visibleInput, {
+                        mask: [
+                            {
+                                mask: '000.000.000-00',
+                                maxLength: 11
+                            },
+                            {
+                                mask: '00.000.000/0000-00'
+                            }
+                        ],
+                        // Defina o comportamento para manter o valor do campo sem a máscara
+                        prepare: function (str) {
+                            return str.replace(/[^0-9]+/g, '');
+                        }
+                    });
+
+                    // Adicione o evento de input ao campo visível
+                    visibleInput.addEventListener('input', function () {
+                        var inputValue = visibleInput.value.replace(/[^\d]/g, '');  // Remova caracteres não numéricos
+                        maskCpfOuCnpj.updateValue(inputValue);  // Atualize o valor com a nova entrada
+                    });
+
+                    // Sincronize a máscara quando o campo visível receber o foco
+                    visibleInput.addEventListener('focus', function () {
+                        maskCpfOuCnpj.updateValue();
+                    });
+
+                    // Sincronize a máscara quando o campo oculto receber o foco
+                    inputElement.addEventListener('focus', function () {
+                        maskCpfOuCnpj.updateValue();
+                    });
+
+                    // Sincronize a máscara antes do envio do formulário
+                    document.querySelector('form').addEventListener('submit', function () {
+                        maskCpfOuCnpj.destroy(); 
+                    });
+                }
     </script>
+
 </body>
 
 {% endblock %}
