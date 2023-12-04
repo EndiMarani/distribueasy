@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'distribueasy',
-        'USER': 'root',
-        'PASSWORD': 'senac@1',
+        'USER': 'endimarani@hotmail.com',
+        'PASSWORD': 'Endi.060392',
         'HOST': 'localhost',
         'PORT': '3306',
     }
